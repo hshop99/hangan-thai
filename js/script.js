@@ -1,81 +1,63 @@
-function showLogin() {
-    alert("🛠 ระบบเข้าสู่ระบบยังอยู่ในระหว่างพัฒนา");
-}
+let currentUser = null;
 
-function goToJobs() {
-    window.location.href = "jobs.html";
-}
-
-// ข้อมูลงานตัวอย่าง
-const jobs = [
-    { title: "ช่วยงานก่อสร้าง", type: "daily", wage: "450 บาท/วัน", location: "บางบ่อ, สมุทรปราการ", people: 4 },
-    { title: "พนักงานโรงงาน", type: "fulltime", wage: "13,000 บาท/เดือน", location: "สมุทรปราการ", people: 6 },
-    { title: "แม่บ้านทำความสะอาด", type: "daily", wage: "400 บาท/วัน", location: "บางพลี", people: 2 },
-    { title: "พนักงานขับรถส่งของ", type: "daily", wage: "500 บาท/วัน", location: "บางบ่อ", people: 1 }
-];
-
-function displayJobs(filteredJobs) {
-    const container = document.getElementById('jobList');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    filteredJobs.forEach(job => {
-        const card = document.createElement('div');
-        card.className = 'job-card';
-        card.innerHTML = `
-            <h3>${job.title}</h3>
-            <p><strong>ค่าจ้าง:</strong> ${job.wage}</p>
-            <p><strong>สถานที่:</strong> ${job.location}</p>
-            <p><strong>ต้องการ:</strong> ${job.people} คน</p>
-            <button onclick="applyForJob('${job.title}')" class="apply-btn">สมัครงาน</button>
-        `;
-        container.appendChild(card);
-    });
-}
-
-function applyForJob(title) {
-    alert(`✅ สมัครงาน "${title}" เรียบร้อยแล้ว!\n\n(ระบบจำลอง - ต่อไปจะมีระบบจริง)`);
-}
-
-// ทำงานเมื่อโหลดหน้า jobs.html
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('jobList')) {
-        displayJobs(jobs);
-
-        const searchInput = document.getElementById('searchInput');
-        const typeFilter = document.getElementById('typeFilter');
-
-        function filter() {
-            const keyword = searchInput.value.toLowerCase();
-            const type = typeFilter.value;
-            
-            const filtered = jobs.filter(job => {
-                const matchText = job.title.toLowerCase().includes(keyword) || job.location.toLowerCase().includes(keyword);
-                const matchType = !type || job.type === type;
-                return matchText && matchType;
-            });
-            displayJobs(filtered);
-        }
-
-        searchInput.addEventListener('input', filter);
-        typeFilter.addEventListener('change', filter);
+// โหลดข้อมูลผู้ใช้จาก LocalStorage
+function loadUser() {
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+        currentUser = JSON.parse(user);
     }
-});
-// ฟังก์ชันลงประกาศงาน
-function postJob() {
-    const title = document.getElementById('title').value;
-    
-    if (title.trim() === "") {
-        alert("กรุณากรอกตำแหน่งงาน");
+}
+
+// สมัครสมาชิก
+function registerUser() {
+    const name = document.getElementById('regName').value;
+    const email = document.getElementById('regEmail').value;
+    const phone = document.getElementById('regPhone').value || '';
+    const type = document.getElementById('regType').value;
+
+    if (!name || !email) {
+        alert("กรุณากรอกชื่อและอีเมล");
         return;
     }
 
-    alert(`✅ ประกาศงาน "${title}" ถูกโพสต์เรียบร้อยแล้ว!\n\n(ประกาศนี้จะปรากฏในหน้าค้นหางานในเวอร์ชันถัดไป)`);
+    const user = {
+        name: name,
+        email: email,
+        phone: phone,
+        type: type,
+        registeredAt: new Date().toISOString()
+    };
+
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    currentUser = user;
     
-    // ล้างฟอร์ม
-    document.getElementById('title').value = '';
-    document.getElementById('wage').value = '';
-    document.getElementById('location').value = '';
-    document.getElementById('description').value = '';
+    alert("✅ สมัครสมาชิกสำเร็จ! ยินดีต้อนรับ " + name);
+    window.location.href = "index.html";
 }
+
+// เข้าสู่ระบบ (จำลอง)
+function showLogin() {
+    const email = prompt("กรอกอีเมลเพื่อเข้าสู่ระบบ:");
+    if (email) {
+        const fakeUser = {
+            name: "สมชาย ใจดี",
+            email: email,
+            type: "worker"
+        };
+        localStorage.setItem('currentUser', JSON.stringify(fakeUser));
+        currentUser = fakeUser;
+        alert("เข้าสู่ระบบสำเร็จ!");
+        window.location.reload();
+    }
+}
+
+// ออกจากระบบ
+function logout() {
+    localStorage.removeItem('currentUser');
+    currentUser = null;
+    alert("ออกจากระบบแล้ว");
+    window.location.reload();
+}
+
+// โหลดเมื่อเปิดหน้า
+document.addEventListener('DOMContentLoaded', loadUser);
