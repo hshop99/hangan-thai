@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ค้นหางาน - หางานไทย</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">หางานไทย</div>
+            <div class="menu">
+                <a href="index.html">หน้าแรก</a>
+                <a href="jobs.html">ค้นหางาน</a>
+                <a href="post-job.html">ลงประกาศงาน</a>
+                <a href="profile.html">โปรไฟล์</a>
+            </div>
+            <div class="auth">
+                <button onclick="showLogin()">เข้าสู่ระบบ</button>
+            </div>
+        </nav>
+    </header>
+
+    <main style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h1>งานที่เปิดรับอยู่</h1>
+        
+        <div style="margin: 20px 0;">
+            <input type="text" id="searchInput" placeholder="ค้นหาตำแหน่งงาน..." style="padding:12px; width:350px;">
+            <select id="typeFilter" style="padding:12px;">
+                <option value="">ทั้งหมด</option>
+                <option value="daily">งานรายวัน</option>
+                <option value="fulltime">งานประจำ</option>
+            </select>
+        </div>
+
+        <div id="jobList"></div>
+    </main>
+
+    <footer>
+        <p>© 2026 หางานไทย</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -22,17 +22,15 @@
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>หางานง่าย ๆ<br>ทั้งงานรายวันและงานประจำ</h1>
-            <p>ผู้หางานใช้ฟรี • นายจ้างจ่าย 2% เมื่อจ้างสำเร็จ</p>
-            
-            <div class="search-box">
-                <input type="text" placeholder="ค้นหางาน เช่น ช่างก่อสร้าง, พนักงานโรงงาน">
-                <button onclick="alert('กำลังค้นหา... (ระบบจำลอง)')">ค้นหา</button>
-            </div>
-        </section>
-    </main>
+    <section class="hero">
+        <h1>หางานง่าย ๆ<br>ทั้งงานรายวันและงานประจำ</h1>
+        <p>ผู้หางานใช้ฟรี • นายจ้างจ่ายเพียง 2% เมื่อจ้างสำเร็จ</p>
+        
+        <div class="search-box">
+            <input type="text" id="homeSearch" placeholder="ค้นหางาน เช่น ช่างก่อสร้าง, พนักงานโรงงาน">
+            <button onclick="goToJobs()">ค้นหา</button>
+        </div>
+    </section>
 
     <footer>
         <p>© 2026 หางานไทย - แพลตฟอร์มหางานฟรี</p>
