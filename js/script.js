@@ -62,3 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
         typeFilter.addEventListener('change', filter);
     }
 });
+// ฟังก์ชันลงประกาศงาน
+function postJob() {
+    const title = document.getElementById('title').value;
+    
+    if (title.trim() === "") {
+        alert("กรุณากรอกตำแหน่งงาน");
+        return;
+    }
+
+    alert(`✅ ประกาศงาน "${title}" ถูกโพสต์เรียบร้อยแล้ว!\n\n(ประกาศนี้จะปรากฏในหน้าค้นหางานในเวอร์ชันถัดไป)`);
+    
+    // ล้างฟอร์ม
+    document.getElementById('title').value = '';
+    document.getElementById('wage').value = '';
+    document.getElementById('location').value = '';
+    document.getElementById('description').value = '';
+}
