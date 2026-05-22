@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงประกาศงาน - หางานไทย</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+       <nav>
+    <div class="logo">หางานไทย</div>
+    <div class="menu">
+        <a href="index.html">หน้าแรก</a>
+        <a href="jobs.html">ค้นหางาน</a>
+        <a href="post-job.html">ลงประกาศงาน</a>
+        <a href="profile.html">โปรไฟล์</a>
+    </div>
+    <div class="auth">
+        <button onclick="showLogin()">เข้าสู่ระบบ</button>
+    </div>
+</nav>
+    </header>
+
+    <main style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
+        <h1 style="text-align:center; margin-bottom:30px;">ลงประกาศงานฟรี</h1>
+        
+        <form id="postJobForm" style="background:white; padding:30px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+            
+            <label>ประเภทงาน</label>
+            <select style="width:100%; padding:12px; margin:8px 0 20px 0;">
+                <option>งานรายวัน</option>
+                <option>งานประจำ</option>
+            </select>
+
+            <label>ตำแหน่งงาน</label>
+            <input type="text" placeholder="เช่น พนักงานช่วยงานก่อสร้าง" style="width:100%; padding:12px; margin:8px 0 20px 0;">
+
+            <label>ค่าจ้าง / เงินเดือน</label>
+            <input type="text" placeholder="เช่น 450 บาท/วัน หรือ 12000 บาท/เดือน" style="width:100%; padding:12px; margin:8px 0 20px 0;">
+
+            <label>สถานที่ทำงาน</label>
+            <input type="text" placeholder="เช่น บางบ่อ, สมุทรปราการ" style="width:100%; padding:12px; margin:8px 0 20px 0;">
+
+            <label>รายละเอียดงาน</label>
+            <textarea rows="6" placeholder="อธิบายงานที่ต้องการ..." style="width:100%; padding:12px; margin:8px 0 20px 0;"></textarea>
+
+            <button type="button" onclick="submitJob()" 
+                    style="width:100%; padding:15px; background:#28a745; color:white; border:none; border-radius:8px; font-size:18px; cursor:pointer;">
+                โพสต์ประกาศงานฟรี
+            </button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026 หางานไทย</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
